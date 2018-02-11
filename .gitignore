@@ -3,3 +3,7 @@
 ################################################################################
 
 /Src/API/EthereumStart/bin
+/Src/API/EthereumStart/obj
+/Src/API/EthereumStart/Properties
+/Src/.vs/EthereumStart/v15/.suo
+/Src/.vs
