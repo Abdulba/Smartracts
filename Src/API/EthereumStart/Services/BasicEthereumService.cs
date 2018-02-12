@@ -47,7 +47,6 @@ namespace EthereumStart.Services
             _web3.TransactionManager.DefaultGasPrice = BigInteger.Parse("1");
         }
 
-
         public async Task<bool> SaveContractToTableStorage(EthereumContractInfo contract)
         {
             StorageCredentials credentials = new StorageCredentials(_storageAccount, _storageKey);
@@ -176,7 +175,7 @@ namespace EthereumStart.Services
 
         public async Task<bool> UnlockAccount(string accountId, string password = "123abc123A")
         {
-            var resultUnlocking = await _web3.Personal.UnlockAccount.SendRequestAsync(_accountAddress, _password, 200);
+            var resultUnlocking = await _web3.Personal.UnlockAccount.SendRequestAsync(accountId, _password, 200);
 
             return resultUnlocking;
         }
