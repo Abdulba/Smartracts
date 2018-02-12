@@ -11,6 +11,7 @@ using EthereumStart.Models;
 using EthereumStart.Services;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using Microsoft.AspNetCore.Http;
 
 namespace EthereumStart
 {
@@ -31,6 +32,14 @@ namespace EthereumStart
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            //{
+            //    builder.AllowAnyOrigin()
+            //           .AllowAnyMethod()
+            //           .AllowAnyHeader()
+            //           .AllowCredentials();
+            //}));
+
             // Add framework services.
             services.AddMvc();
             //services.Configure<EthereumSettings>(Configuration);
@@ -67,10 +76,44 @@ namespace EthereumStart
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
+            //app.UseCorsMiddleware();
+
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+
             app.UseMvc();
-
-
 
         }
     }
+
+    public class CorsMiddleware
+    {
+        private readonly RequestDelegate _next;
+
+        public CorsMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
+
+        public Task Invoke(HttpContext httpContext)
+        {
+            httpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            httpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
+            httpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name");
+            httpContext.Response.Headers.Add("Access-Control-Allow-Methods", "POST,GET,PUT,PATCH,DELETE,OPTIONS");
+            return _next(httpContext);
+        }
+    }
+
+    public static class CorsMiddlewareExtensions
+    {
+        public static IApplicationBuilder UseCorsMiddleware(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<CorsMiddleware>();
+        }
+    }
+
 }
