@@ -64,26 +64,26 @@ function GetMaxConcurrencies() {
     xhttp.send();
 }
 
-function SetConcurrency(userId, count, username) {
-    var xhttp = new XMLHttpRequest();
-    var setConUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/setConcurrency/" + count + "/" + userId + "/" + username;
+//function SetConcurrency(userId, count, username) {
+//    var xhttp = new XMLHttpRequest();
+//    var setConUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/setConcurrency/" + count + "/" + userId + "/" + username;
 
-    xhttp.onreadystatechange = function () {
-        if (xhttp.readyState == 4) {
-            if (xhttp.status === 200) {
-                var response = JSON.parse(xhttp.responseText);
-                alert(response);
-            } else {
-                alert(xhttp.status);
-                alert("error");
-            }
-        }
-    }
+//    xhttp.onreadystatechange = function () {
+//        if (xhttp.readyState == 4) {
+//            if (xhttp.status === 200) {
+//                var response = JSON.parse(xhttp.responseText);
+//                alert(response);
+//            } else {
+//                alert(xhttp.status);
+//                alert("error");
+//            }
+//        }
+//    }
 
-    xhttp.open("GET", setConUrl, false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-}
+//    xhttp.open("GET", setConUrl, false);
+//    xhttp.setRequestHeader("Content-type", "application/json");
+//    xhttp.send();
+//}
 
 function SetConcurrency(userId, count,username) {
     var xhttp = new XMLHttpRequest();
@@ -106,7 +106,8 @@ function SetConcurrency(userId, count,username) {
     xhttp.send();
 }
 
-function IncrementConCurrency(userId, count,username) {
+function IncrementConCurrency(userId, username) {
+    var count = document.getElementById("NewLicense").value;
     var xhttp = new XMLHttpRequest();
     var setConUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/incrementConcurrency/" + count + "/" + userId + "/" + username;
 

@@ -28,16 +28,6 @@
     <script src="scripts/Smart.js"></script>
 
     <script>
-        //window.onload = function() {
-        //    GetAccountBalance('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE');
-        //    GetMaxConcurrencies();
-        //};
-
-        //$(function () {
-        //    GetAccountBalance('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE');
-        //    GetMaxConcurrencies();
-        //});
-
         $(document).ready(function () {
             GetAccountBalance('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE');
             GetMaxConcurrencies();
@@ -180,7 +170,7 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-sm-12 col-sm-12 text-center">
                                             <div class="dashboard_link">
-                                                <input type="button" class="link_icon icon-basket-loaded" value="Pay" onclick="TransferEthers('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE','0x5A5AA2714b31CFE3FD626B479a466Cf63EB90248')" />
+                                                <input type="button" class="link_icon icon-basket-loaded" value="Pay" onclick="TransferEthers('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE', '0x5A5AA2714b31CFE3FD626B479a466Cf63EB90248'); IncrementConCurrency('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE', 'Abdul'); window.location.href = 'login.html';" />
                                             </div>
                                         </div>
                                     </div>

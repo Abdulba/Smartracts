@@ -5,12 +5,14 @@ window.App = {
 
  validationAndLogin: function ()
  {
+     //document.getElementById("loader").style.display = "block";
      GetConcurrentBalance('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE', this.login, this.manageAccount);
  },
 
  login: function() {
     var self = this;
     login('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE');
+    //document.getElementById("loader").style.display = "none";
     window.location.href = "welcome.html";
   },
 
@@ -22,8 +24,13 @@ window.App = {
 
   manageAccount: function () {
       var self = this;
-      window.location.href = "RenewLicense.html";
-  },
+      //document.getElementById("loader").style.display = "none";
+
+      var r = confirm("Your concurrency user limit reached, Do you like to increase the limit now?");
+      if (r == true) {
+          window.location.href = "RenewLicense.html";
+      }
+    },
 
   payEthers: function () {
       var self = this;
