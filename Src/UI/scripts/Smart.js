@@ -1,6 +1,5 @@
  function CalculateLicense()
   {
-
        var txt1 = document.getElementById("ExistingLicense");
        var txt2 = document.getElementById("NewLicense");
        var txt3 = document.getElementById("TotalLicense");
@@ -19,8 +18,8 @@
        {
             txtamount.value = parseInt(txtnewlicense.value) * 10;
        }
-
  }
+
 
 function GetAccountBalance()
  {
@@ -31,7 +30,9 @@ function GetAccountBalance()
          if (xhttp.readyState == 4) {
              if (xhttp.status === 200) {
                  var response = JSON.parse(xhttp.responseText);
-                 alert(response);
+                 //alert(response);
+                 //$('ExistingFethers').html(response);
+                 document.getElementById('ExistingLicense').innerHTML = response;
              } else {
                  alert(xhttp.status);
                  alert("error");
@@ -44,6 +45,28 @@ function GetAccountBalance()
      xhttp.send();
  }
 
+function GetMaxConcurrencies() {
+    var xhttp = new XMLHttpRequest();
+    //var getBalanceUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/getBalance/0x4DccD0F0f1d4C11b93a1D027894892652122fEcE";
+
+    //xhttp.onreadystatechange = function () {
+    //    if (xhttp.readyState == 4) {
+    //        if (xhttp.status === 200) {
+    //            var response = JSON.parse(xhttp.responseText);
+    //            //alert(response);
+    //$('ExistingLicense').html(2);
+    document.getElementById('ExistingLicense').innerHTML = 2;
+    //        } else {
+    //            alert(xhttp.status);
+    //            alert("error");
+    //        }
+    //    }
+    //}
+
+    //xhttp.open("GET", getBalanceUrl, false);
+    //xhttp.setRequestHeader("Content-type", "application/json");
+    //xhttp.send();
+}
 
 function SetConcurrency(userId, count) {
     var xhttp = new XMLHttpRequest();
@@ -108,7 +131,7 @@ function logout(userId) {
     xhttp.send();
 }
 
-function GetConcurrentBalance(userId) {
+function GetConcurrentBalance(userId, loginCb, manageCb) {
     var xhttp = new XMLHttpRequest();
     var getConBalanceUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/GetConcurrentUserBalance/" + userId;
 
@@ -116,7 +139,16 @@ function GetConcurrentBalance(userId) {
         if (xhttp.readyState == 4) {
             if (xhttp.status === 200) {
                 var response = JSON.parse(xhttp.responseText);
-                alert(response);
+                //$('ExistingLicense').text = response;
+                //alert(response);
+                if (response == 0)
+                {
+                    manageCb();
+                }
+                else
+                {
+                    loginCb();
+                }
             } else {
                 alert(xhttp.status);
                 alert("error");
@@ -137,7 +169,7 @@ function TransferEthers(userId, accountTo, ethers) {
         if (xhttp.readyState == 4) {
             if (xhttp.status === 200) {
                 var response = JSON.parse(xhttp.responseText);
-                alert(response);
+                alert('Successfully transferred Ethers!');
             } else {
                 alert(xhttp.status);
                 alert("error");

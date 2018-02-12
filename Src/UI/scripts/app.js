@@ -1,7 +1,12 @@
 window.App = {
  setStatus: function(message) {
     alert(message);
-  },
+    },
+
+ validationAndLogin: function ()
+ {
+     GetConcurrentBalance('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE', this.login, this.manageAccount);
+ },
 
  login: function() {
     var self = this;
@@ -14,6 +19,11 @@ window.App = {
     logout('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE');
     window.location.href = "login.html";
  },
+
+  manageAccount: function () {
+      var self = this;
+      window.location.href = "RenewLicense.html";
+  },
 
   payEthers: function () {
       var self = this;
