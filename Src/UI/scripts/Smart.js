@@ -68,9 +68,9 @@ function GetMaxConcurrencies() {
     //xhttp.send();
 }
 
-function SetConcurrency(userId, count) {
+function SetConcurrency(userId, count,username) {
     var xhttp = new XMLHttpRequest();
-    var setConUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/setConcurrency/" + count + "/" + userId;
+    var setConUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/setConcurrency/" + count + "/" + userId + "/" + username;
 
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4) {
@@ -89,9 +89,30 @@ function SetConcurrency(userId, count) {
     xhttp.send();
 }
 
-function login(userId) {
+function IncrementConCurrency(userId, count,username) {
     var xhttp = new XMLHttpRequest();
-    var loginUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/login/" + userId;
+    var setConUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/incrementConcurrency/" + count + "/" + userId + "/" + username;
+
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4) {
+            if (xhttp.status === 200) {
+                var response = JSON.parse(xhttp.responseText);
+                alert(response);
+            } else {
+                alert(xhttp.status);
+                alert("error");
+            }
+        }
+    }
+
+    xhttp.open("GET", setConUrl, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+}
+
+function login(userId,username) {
+    var xhttp = new XMLHttpRequest();
+    var loginUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/login/" + userId + "/" + username;
 
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4) {
@@ -110,9 +131,9 @@ function login(userId) {
     xhttp.send();
 }
 
-function logout(userId) {
+function logout(userId,username) {
     var xhttp = new XMLHttpRequest();
-    var logoutUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/logout/" + userId;
+    var logoutUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/logout/" + userId + "/" + username;
 
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4) {
