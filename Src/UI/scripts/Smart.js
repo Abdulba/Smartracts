@@ -1,14 +1,12 @@
- function CalculateLicense()
-  {
-       var txt1 = document.getElementById("ExistingLicense");
-       var txt2 = document.getElementById("NewLicense");
-       var txt3 = document.getElementById("TotalLicense");
-       if ((txt1.value != "") && (txt2.value != ""))
-       {
-            txt3.value = parseInt(txt1.value) + parseInt(txt2.value);
-       }
+function CalculateLicense() {
+    var txt1 = document.getElementById("ExistingLicense");
+    var txt2 = document.getElementById("NewLicense");
+    var txt3 = document.getElementById("TotalLicense");
+    if ((txt1.value != "") && (txt2.value != "")) {
+        txt3.value = parseInt(txt1.value) + parseInt(txt2.value);
+    }
 
-  }
+}
 
  function CalculateFether()
  {
@@ -22,51 +20,69 @@
  }
 
 
-function GetAccountBalance()
- {
-     var xhttp = new XMLHttpRequest();
-     var getBalanceUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/getBalance/0x4DccD0F0f1d4C11b93a1D027894892652122fEcE";
+function GetAccountBalance() {
+    var xhttp = new XMLHttpRequest();
+    var getBalanceUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/getBalance/0x4DccD0F0f1d4C11b93a1D027894892652122fEcE";
 
-     xhttp.onreadystatechange = function () {
-         if (xhttp.readyState == 4) {
-             if (xhttp.status === 200) {
-                 var response = JSON.parse(xhttp.responseText);
-                 //alert(response);
-                 //$('ExistingFethers').html(response);
-                 document.getElementById('ExistingLicense').innerHTML = response;
-             } else {
-                 alert(xhttp.status);
-                 alert("error");
-             }
-         }
-     }
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4) {
+            if (xhttp.status === 200) {
+                var response = JSON.parse(xhttp.responseText);
+                //alert(response);
+                //$('ExistingFethers').html(response);
+                document.getElementById('ExistingFethers').innerHTML = response;
+            } else {
+                alert(xhttp.status);
+                alert("error");
+            }
+        }
+    }
 
-     xhttp.open("GET", getBalanceUrl, false);
-     xhttp.setRequestHeader("Content-type", "application/json");
-     xhttp.send();
- }
+    xhttp.open("GET", getBalanceUrl, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+}
 
 function GetMaxConcurrencies() {
     var xhttp = new XMLHttpRequest();
-    //var getBalanceUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/getBalance/0x4DccD0F0f1d4C11b93a1D027894892652122fEcE";
+    var getMaxUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/GetMaxConcurrentCount/0x4DccD0F0f1d4C11b93a1D027894892652122fEcE";
 
-    //xhttp.onreadystatechange = function () {
-    //    if (xhttp.readyState == 4) {
-    //        if (xhttp.status === 200) {
-    //            var response = JSON.parse(xhttp.responseText);
-    //            //alert(response);
-    //$('ExistingLicense').html(2);
-    document.getElementById('ExistingLicense').innerHTML = 2;
-    //        } else {
-    //            alert(xhttp.status);
-    //            alert("error");
-    //        }
-    //    }
-    //}
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4) {
+            if (xhttp.status === 200) {
+                var response = JSON.parse(xhttp.responseText);
+                document.getElementById('ExistingLicense').innerHTML = response;
+            } else {
+                alert(xhttp.status);
+                alert("error");
+            }
+        }
+    }
 
-    //xhttp.open("GET", getBalanceUrl, false);
-    //xhttp.setRequestHeader("Content-type", "application/json");
-    //xhttp.send();
+    xhttp.open("GET", getMaxUrl, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+}
+
+function SetConcurrency(userId, count, username) {
+    var xhttp = new XMLHttpRequest();
+    var setConUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/setConcurrency/" + count + "/" + userId + "/" + username;
+
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == 4) {
+            if (xhttp.status === 200) {
+                var response = JSON.parse(xhttp.responseText);
+                alert(response);
+            } else {
+                alert(xhttp.status);
+                alert("error");
+            }
+        }
+    }
+
+    xhttp.open("GET", setConUrl, false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
 }
 
 function SetConcurrency(userId, count,username) {
@@ -111,7 +127,7 @@ function IncrementConCurrency(userId, count,username) {
     xhttp.send();
 }
 
-function login(userId,username) {
+function login(userId, username) {
     var xhttp = new XMLHttpRequest();
     var loginUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/login/" + userId + "/" + username;
 
@@ -132,7 +148,7 @@ function login(userId,username) {
     xhttp.send();
 }
 
-function logout(userId,username) {
+function logout(userId, username) {
     var xhttp = new XMLHttpRequest();
     var logoutUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/logout/" + userId + "/" + username;
 
@@ -163,12 +179,10 @@ function GetConcurrentBalance(userId, loginCb, manageCb) {
                 var response = JSON.parse(xhttp.responseText);
                 //$('ExistingLicense').text = response;
                 //alert(response);
-                if (response == 0)
-                {
+                if (response == 0) {
                     manageCb();
                 }
-                else
-                {
+                else {
                     loginCb();
                 }
             } else {
