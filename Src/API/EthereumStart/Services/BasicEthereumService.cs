@@ -38,7 +38,7 @@ namespace EthereumStart.Services
         public BasicEthereumService(IOptions<EthereumSettings> config)
         {
             //_web3 = new Web3("http://127.0.0.1:8000");
-            _web3 = new Web3("http://52.187.176.233:8000");
+            _web3 = new Web3("http://52.187.147.215:8000");
             _accountAddress = config.Value.EhtereumAccount;
             _password = config.Value.EhtereumPassword;
             _storageAccount = config.Value.StorageAccount;
