@@ -141,18 +141,26 @@
                         <td class="text-center action"></td>
                         <td>Additional Required</td>
                         <td>
-                            <input type="text" name="txtlic2" id="NewLicense" onblur="CalculateLicense();CalculateFether()">
+                            <input type="text" name="txtlic2" id="NewLicense" onblur="CalculateFether()">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="text-center action"></td>
+                        <td>Fethers to be paid</td>
+                        <td>
+                            <label name="AmountToPay" id="lblamounttopay"></label>
                         </td>
 
                     </tr>
                     <!--<tr>
-                        <td class="text-center action"></td>
-                        <td>Total</td>
-                        <td>
-                            <input type="text" name="txtlic3" id="TotalLicense">
-                        </td>
+        <td class="text-center action"></td>
+        <td>Total</td>
+        <td>
+            <input type="text" name="txtlic3" id="TotalLicense">
+        </td>
 
-                    </tr>-->
+    </tr>-->
                     <tr>
                         <td colspan="8" class="accordion_row">
                             <div class="account_transfer_wrp">
@@ -160,10 +168,11 @@
                                 <form class="form_main">
                                     <div class="row">
                                         <div class="form_main acc_detail_title">
-                                            <label class="label float-left">Fethers to be paid</label>
-                                            <label class="input float-left">
-                                                <input type="text" name="AmountToPay" id="txtamounttopay">
-                                            </label>
+                                            <!-- <label class="label float-left">Fethers to be paid</label>
+     <label class="input float-left">
+
+         <label name="AmountToPay" id="lblamounttopay"></label>
+     </label>-->
 
                                         </div>
                                     </div>
@@ -171,7 +180,7 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-sm-12 col-sm-12 text-center">
                                             <div class="dashboard_link">
-                                                <input type="button" class="link_icon icon-basket-loaded" value="Pay" onclick="window.location.href='./RenewLicense.html'" />
+                                                <input type="button" class="link_icon icon-basket-loaded" value="Pay" onclick="TransferEthers('0x4DccD0F0f1d4C11b93a1D027894892652122fEcE','0x5A5AA2714b31CFE3FD626B479a466Cf63EB90248')" />
                                             </div>
                                         </div>
                                     </div>

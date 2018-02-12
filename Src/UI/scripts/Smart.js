@@ -13,10 +13,11 @@
  function CalculateFether()
  {
 	  var txtnewlicense = document.getElementById("NewLicense");
-	   var txtamount = document.getElementById("txtamounttopay");
+      var lblamount = document.getElementById("lblamounttopay");
        if ((txtnewlicense.value != ""))
        {
-            txtamount.value = parseInt(txtnewlicense.value) * 10;
+           lblamount.innerHTML = parseInt(txtnewlicense.value) * 10;
+           lblamount.innerHTML.style.fontWeight = 'bold';
        }
  }
 
@@ -182,7 +183,8 @@ function GetConcurrentBalance(userId, loginCb, manageCb) {
     xhttp.send();
 }
 
-function TransferEthers(userId, accountTo, ethers) {
+function TransferEthers(userId, accountTo) {
+    var ethers = document.getElementById("lblamounttopay").innerHTML ;
     var xhttp = new XMLHttpRequest();
     var transferUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/exeContract/TransferEther/" + userId + "/" + accountTo + "/" + ethers;
 
