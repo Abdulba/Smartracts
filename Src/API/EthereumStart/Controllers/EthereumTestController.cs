@@ -41,8 +41,8 @@ namespace EthereumStart.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("exeContract/setConcurrency/{count}/{user}")]
-        public async Task<bool> ExecuteContractCount([FromRoute] int count, [FromRoute] string user = "")
+        [Route("exeContract/setConcurrency/{count}/{user}/{currentUser}")]
+        public async Task<bool> ExecuteContractCount([FromRoute] int count, [FromRoute] string user = "", string currentUser = "")
         {
             if (string.IsNullOrEmpty(user))
             {
@@ -56,7 +56,47 @@ namespace EthereumStart.Controllers
                 var transactionEvent = contract.GetEvent("Transaction");
                 var filter = await transactionEvent.CreateFilterAsync();
 
-                var transactionHash = await method.SendTransactionAsync(service.AccountAddress, user, count);
+                var transactionHash = await method.SendTransactionAsync(service.AccountAddress, user, count, currentUser);
+                var receipt = await service.MineAndGetReceiptAsync(transactionHash);
+                var log = await transactionEvent.GetFilterChanges<TransactionEvent>(filter);
+
+                if (log.Count > 0)
+                {
+                    return log[0].Event.Result;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// use this method for incremnet the concurrency user count
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("exeContract/incrementConcurrency/{count}/{user}/{currentUser}")]
+        public async Task<bool> IncrementConCurrency([FromRoute] int count, [FromRoute] string user = "", string currentUser = "")
+        {
+            if (string.IsNullOrEmpty(user))
+            {
+                user = service.AccountAddress;
+            }
+            try
+            {
+                var contract = await service.GetContract("");
+                if (contract == null) throw new System.Exception("Contract not present in storage");
+                var method = contract.GetFunction("incrementConcurrency");
+                var transactionEvent = contract.GetEvent("Transaction");
+                var filter = await transactionEvent.CreateFilterAsync();
+
+                var transactionHash = await method.SendTransactionAsync(service.AccountAddress, user, count, currentUser);
                 var receipt = await service.MineAndGetReceiptAsync(transactionHash);
                 var log = await transactionEvent.GetFilterChanges<TransactionEvent>(filter);
 
@@ -79,8 +119,8 @@ namespace EthereumStart.Controllers
         /// <param name="contractMethod"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("exeContract/{contractMethod}/{user}")]
-        public async Task<bool> ExecuteContractAddress([FromRoute] string contractMethod, string user = "")
+        [Route("exeContract/{contractMethod}/{user}/{currentUser}")]
+        public async Task<bool> ExecuteContractAddress([FromRoute] string contractMethod, string user = "", string currentUser = "")
         {
             if (string.IsNullOrEmpty(user))
             {
@@ -93,7 +133,7 @@ namespace EthereumStart.Controllers
                 var method = contract.GetFunction(contractMethod);
                 var transactionEvent = contract.GetEvent("Transaction");
                 var filter = await transactionEvent.CreateFilterAsync();
-                var transactionHash = await method.SendTransactionAsync(service.AccountAddress, user);
+                var transactionHash = await method.SendTransactionAsync(service.AccountAddress, user, currentUser);
                 var receipt = await service.MineAndGetReceiptAsync(transactionHash);
                 var log = await transactionEvent.GetFilterChanges<TransactionEvent>(filter);
 
@@ -109,6 +149,7 @@ namespace EthereumStart.Controllers
                 return false;
             }
         }
+
 
         [HttpGet]
         [Route("exeContract/GetConcurrentUserBalance/{user}")]
@@ -133,7 +174,30 @@ namespace EthereumStart.Controllers
         }
 
         [HttpGet]
-        [Route("exeContract/TransferEther/{user}")]
+        [Route("exeContract/GetMaxConcurrentCount/{user}")]
+        public async Task<int> GetMaxConcurrentCount(string user = "")
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(user))
+                {
+                    user = service.AccountAddress;
+                }
+                var contract = await service.GetContract("");
+                if (contract == null) throw new System.Exception("Contract not present in storage");
+                var method = contract.GetFunction("getMaxConcurrencyCount");
+
+                var result = method.CallAsync<int>(user).GetAwaiter().GetResult();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        [HttpGet]
+        [Route("exeContract/TransferEther/{user}/{accountTo}/{ethers}")]
         public async Task<bool> TransferEther(string user = "", string accountTo = "", int ethers = 0)
         {
             if (string.IsNullOrEmpty(user))

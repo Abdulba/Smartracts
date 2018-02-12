@@ -161,32 +161,31 @@ namespace EthereumStart.Services
             //}
             //return null;
             //string abi = @"[ { 'constant': true, 'inputs': [ { 'name': '', 'type': 'address' } ], 'name': 'currentCount', 'outputs': [ { 'name': '', 'type': 'uint256', 'value': '0' } ], 'payable': false, 'stateMutability': 'view', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' } ], 'name': 'login', 'outputs': [ { 'name': '', 'type': 'bool' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': true, 'inputs': [ { 'name': '', 'type': 'address' } ], 'name': 'maxCount', 'outputs': [ { 'name': '', 'type': 'uint256', 'value': '0' } ], 'payable': false, 'stateMutability': 'view', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' }, { 'name': 'count', 'type': 'uint256' } ], 'name': 'setConcurrency', 'outputs': [ { 'name': '', 'type': 'bool' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' } ], 'name': 'getConcurrencyBalance', 'outputs': [ { 'name': '', 'type': 'uint256' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' } ], 'name': 'logout', 'outputs': [ { 'name': '', 'type': 'bool' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'anonymous': false, 'inputs': [ { 'indexed': false, 'name': 'currentCount', 'type': 'uint256' }, { 'indexed': true, 'name': 'user', 'type': 'address' }, { 'indexed': false, 'name': 'action', 'type': 'string' }, { 'indexed': false, 'name': 'result', 'type': 'bool' } ], 'name': 'Transaction', 'type': 'event' } ]";
-            string abi = @"[ { 'constant': true, 'inputs': [ { 'name': '', 'type': 'address' } ], 'name': 'currentCount', 'outputs': [ { 'name': '', 'type': 'uint256', 'value': '0' } ], 'payable': false, 'stateMutability': 'view', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' } ], 'name': 'login', 'outputs': [ { 'name': '', 'type': 'bool' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': true, 'inputs': [ { 'name': '', 'type': 'address' } ], 'name': 'maxCount', 'outputs': [ { 'name': '', 'type': 'uint256', 'value': '3' } ], 'payable': false, 'stateMutability': 'view', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' }, { 'name': 'count', 'type': 'uint256' } ], 'name': 'setConcurrency', 'outputs': [ { 'name': '', 'type': 'bool' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' } ], 'name': 'getConcurrencyBalance', 'outputs': [ { 'name': '', 'type': 'uint256' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' } ], 'name': 'logout', 'outputs': [ { 'name': '', 'type': 'bool' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'anonymous': false, 'inputs': [ { 'indexed': false, 'name': 'currentCount', 'type': 'uint256' }, { 'indexed': true, 'name': 'user', 'type': 'address' }, { 'indexed': false, 'name': 'action', 'type': 'string' }, { 'indexed': false, 'name': 'result', 'type': 'bool' } ], 'name': 'Transaction', 'type': 'event' } ]";
+            string abi = @"[ { 'constant': true, 'inputs': [ { 'name': '', 'type': 'address' } ], 'name': 'currentCount', 'outputs': [ { 'name': '', 'type': 'uint256', 'value': '0' } ], 'payable': false, 'stateMutability': 'view', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' }, { 'name': 'count', 'type': 'uint256' }, { 'name': 'currentuser', 'type': 'string' } ], 'name': 'setConcurrency', 'outputs': [ { 'name': '', 'type': 'bool' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' }, { 'name': 'currentuser', 'type': 'string' } ], 'name': 'logout', 'outputs': [ { 'name': '', 'type': 'bool' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' }, { 'name': 'currentuser', 'type': 'string' } ], 'name': 'login', 'outputs': [ { 'name': '', 'type': 'bool' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': true, 'inputs': [ { 'name': '', 'type': 'address' } ], 'name': 'maxCount', 'outputs': [ { 'name': '', 'type': 'uint256', 'value': '0' } ], 'payable': false, 'stateMutability': 'view', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' }, { 'name': 'count', 'type': 'uint256' }, { 'name': 'currentuser', 'type': 'string' } ], 'name': 'incrementConcurrency', 'outputs': [ { 'name': '', 'type': 'bool' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' } ], 'name': 'getConcurrencyBalance', 'outputs': [ { 'name': '', 'type': 'uint256' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'constant': false, 'inputs': [ { 'name': 'accountId', 'type': 'address' } ], 'name': 'getMaxConcurrencyCount', 'outputs': [ { 'name': '', 'type': 'uint256' } ], 'payable': false, 'stateMutability': 'nonpayable', 'type': 'function' }, { 'anonymous': false, 'inputs': [ { 'indexed': false, 'name': 'currentCount', 'type': 'uint256' }, { 'indexed': true, 'name': 'user', 'type': 'address' }, { 'indexed': false, 'name': 'action', 'type': 'string' }, { 'indexed': false, 'name': 'result', 'type': 'bool' }, { 'indexed': false, 'name': 'currentUser', 'type': 'string' } ], 'name': 'Transaction', 'type': 'event' } ]";
+
             var resultUnlocking = await _web3.Personal.UnlockAccount.SendRequestAsync(_accountAddress, _password, 120);
 
             if (resultUnlocking)
             {
                 //return _web3.Eth.GetContract(abi, "0x2349cd9F16e3C4A0dAc13FFf8c241Ed18c9DBe8B");
                 //return _web3.Eth.GetContract(abi, "0xB9162DCD3B4Dd64B34Dfc48276e314469c09D022");
-                return _web3.Eth.GetContract(abi, "0x1Ac5d4b6FfAEC361f69c2211b53E42EE9bB2D743");
+                return _web3.Eth.GetContract(abi, "0xa1E83D7507dC5EEbDdC8494ED87272eac692091B");
             }
             return null;
         }
 
         public async Task<bool> UnlockAccount(string accountId, string password = "123abc123A")
         {
-            var resultUnlocking = await _web3.Personal.UnlockAccount.SendRequestAsync(_accountAddress, _password, 120);
+            var resultUnlocking = await _web3.Personal.UnlockAccount.SendRequestAsync(_accountAddress, _password, 200);
 
             return resultUnlocking;
         }
 
         public async Task<Nethereum.RPC.Eth.DTOs.TransactionReceipt> MineAndGetReceiptAsync(string transactionHash)
         {
-            //var mineResult = await _web3.Miner.Start.SendRequestAsync(6);
             var web3Geth = new Web3Geth(_web3.Client);
 
             var miningResult = await web3Geth.Miner.Start.SendRequestAsync(6);
-            //var miningResult = await web3Geth.Miner.Start.SendRequestAsync();
 
             var receipt = await _web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash);
 
@@ -199,26 +198,6 @@ namespace EthereumStart.Services
             miningResult = await web3Geth.Miner.Stop.SendRequestAsync();
             return receipt;
         }
-
-        public async Task<Nethereum.RPC.Eth.DTOs.TransactionReceipt> MineAndGetReceiptAsync(Nethereum.Web3.Web3 web3, string transactionHash)
-        {
-            var web3Geth = new Web3Geth(web3.Client);
-            var miningResult = await web3Geth.Miner.Start.SendRequestAsync(6);
-            //Assert.True(miningResult);
-
-            var receipt = await web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash);
-
-            while (receipt == null)
-            {
-                Thread.Sleep(1000);
-                receipt = await web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash);
-            }
-
-            miningResult = await web3Geth.Miner.Stop.SendRequestAsync();
-            //Assert.True(miningResult);
-            return receipt;
-        }
-
 
     }
 
@@ -236,21 +215,10 @@ namespace EthereumStart.Services
         [Parameter("bool", "result", 4, false)]
         public bool Result { get; set; }
 
-    }
-
-    public class SetEvent
-    {
-        [Parameter("bool", "setResult", 1, false)]
-        public bool setResult { get; set; }
-
-        [Parameter("address", "user", 2, true)]
-        public string User { get; set; }
-
-        //[Parameter("address", "sender", 3, false)]
-        //public string Sender { get; set; }
-
-        //[Parameter("bool", "result", 4, false)]
-        //public bool Result { get; set; }
+        [Parameter("string", "currentUser", 5, false)]
+        public string CurrentUser { get; set; }
 
     }
+
+
 }
