@@ -22,9 +22,32 @@
 
  }
 
+ function GetAccountBalanceHttp(callback)
+ {
+     var xhttp = new XMLHttpRequest();
+     var getBalanceUrl = "http://smartractsapi.azurewebsites.net/api/EthereumTest/getBalance/0x4DccD0F0f1d4C11b93a1D027894892652122fEcE";
+
+     //xhttp.addEventListener('load', callback);
+     xhttp.addEventListener('error', () => console.log("Request to " + getBalanceUrl + " failed"));
+     xhttp.onreadystatechange = function () {
+         if (xhttp.readyState == 4 && xhttp.status == 200) {
+             callback(xhttp);
+         }
+     }
+     xhttp.open("GET", getBalanceUrl, true);
+     xhttp.setRequestHeader("Content-type", "application/json");
+     xhttp.send();
+     //alert(xhttp.responseText);
+
+     //alert(JSON.parse(xhttp.responseText));
+ }
+
  function GetAccountBalance()
  {
-     $.get("https://smartractsapi.azurewebsites.net/getBalance/", function (data) {
-         $(".result").html(data);
-     });
+     GetAccountBalanceHttp(function (xhttp) {
+         debugger;
+         alert(xhttp.responseText);
+     })
  }
+
+

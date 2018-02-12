@@ -133,7 +133,7 @@ namespace EthereumStart.Controllers
         }
 
         [HttpGet]
-        [Route("exeContract/TransferEther/{user}")]
+        [Route("exeContract/TransferEther/{user}/{accountTo}/{ethers}")]
         public async Task<bool> TransferEther(string user = "", string accountTo = "", int ethers = 0)
         {
             if (string.IsNullOrEmpty(user))
